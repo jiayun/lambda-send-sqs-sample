@@ -53,6 +53,6 @@ configurations {
 
 dependencies {
     compile("com.amazonaws:aws-java-sdk-sqs:1.11.337")
-    compileOnly("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
+    compile("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
     compileOnly("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
 }

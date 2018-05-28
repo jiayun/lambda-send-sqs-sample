@@ -1,6 +1,6 @@
 package com.example.demo;
 
-public class Response {
+public class ResponseBody {
 
     private String resultCode;
 
@@ -8,7 +8,7 @@ public class Response {
 
     private String data;
 
-    public Response(String resultCode, String resultMsg, String data) {
+    public ResponseBody(String resultCode, String resultMsg, String data) {
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
         this.data = data;
@@ -40,7 +40,7 @@ public class Response {
 
     @Override
     public String toString() {
-        return "Response{" +
+        return "ResponseBody{" +
                 "resultCode='" + resultCode + '\'' +
                 ", resultMsg='" + resultMsg + '\'' +
                 ", data='" + data + '\'' +
