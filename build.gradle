@@ -1,0 +1,58 @@
+buildscript {
+    ext {
+//        shadowVersion = '2.0.4'
+    }
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+//        classpath "com.github.jengelman.gradle.plugins:shadow:${shadowVersion}"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    awsLambdaEventsVersion = "2.1.0"
+    awsLambdaCoreVersion = "1.2.0"
+}
+
+assemble.dependsOn = [shadowJar]
+
+jar {
+    manifest {
+        attributes 'Start-Class': 'com.example.demo.Main'
+    }
+}
+
+import com.github.jengelman.gradle.plugins.shadow.transformers.*
+
+shadowJar {
+    classifier = 'aws'
+}
+
+configurations {
+    testCompile.extendsFrom(compileOnly)
+}
+
+dependencies {
+    compile("com.amazonaws:aws-java-sdk-sqs:1.11.337")
+    compileOnly("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
+    compileOnly("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
+}
